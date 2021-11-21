@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\KomikModel;
+
 class Komik extends BaseController
 {
     protected $komikModel;
@@ -11,13 +13,35 @@ class Komik extends BaseController
     }
     public function index()
     {
-        $komik = $this->komikModel->findAll();
-       
+        // $komik = $this->komikModel->findAll();
+
         $data = [
             'title' => 'Daftar Komik',
-            'komik' => $komik
+            'komik' => $this->komikModel->getKomik()
         ];
-       
-        return view('dashboard/komik', $data);
+
+        return view('komik/index', $data);
+    }
+    public function detail($slug)
+    {
+
+        $data = [
+            'title' => "Detail Komik",
+            'komik' => $this->komikModel->getKomik($slug)
+        ];
+        return view('komik/detail', $data);
+    }
+
+    public function create()
+    {
+        $data = [
+            'title' => 'Form Tambah Data'
+        ];
+        return view('komik/create', $data);
+    }
+
+    public function save()
+    {
+        dd($this->request->getVar());
     }
 }

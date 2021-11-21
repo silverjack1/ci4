@@ -1,6 +1,9 @@
 .sampul {
     width: 100px;
 }
+.komiku {
+    width: 200px;
+}
 
 .table > tbody > tr > * {
     vertical-align: middle;
