@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="<?= base_url()?>/public/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="<?= base_url()?>/public/plugins/summernote/summernote-bs4.min.css">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="<?= base_url()?>/public/css/style.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -334,13 +336,15 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rekap Hasil Tes</p>
                 </a>
-              </li>
-        
-              
+              </li>                
             </ul>
           </li>
-         
-         
+          <li class="nav-item">
+                <a href="<?= base_url()?>/komik" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Komik</p>
+                </a>
+              </li>       
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -382,12 +386,12 @@
 <!-- ChartJS -->
 <script src="<?= base_url()?>/public/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="<?= base_url()?>/public/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?= base_url()?>/public/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?= base_url()?>/public/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- <script src="<?= base_url()?>/public/plugins/sparklines/sparkline.js"></script> -->
+JQVMap
+<!-- <script src="<?= base_url()?>/public/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?= base_url()?>/public/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
 <!-- jQuery Knob Chart -->
-<script src="<?= base_url()?>/public/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- <script src="<?= base_url()?>/public/plugins/jquery-knob/jquery.knob.min.js"></script> -->
 <!-- daterangepicker -->
 <script src="<?= base_url()?>/public/plugins/moment/moment.min.js"></script>
 <script src="<?= base_url()?>/public/plugins/daterangepicker/daterangepicker.js"></script>
@@ -402,6 +406,6 @@
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?= base_url()?>/public/dist/js/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url()?>/public/dist/js/pages/dashboard.js"></script>
+<!-- <script src="<?= base_url()?>/public/dist/js/pages/dashboard.js"></script> -->
 </body>
 </html>
