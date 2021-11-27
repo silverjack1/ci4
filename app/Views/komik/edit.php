@@ -27,13 +27,14 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <form action="<?= base_url() ?>/komik/save" method="post">
+            <form action="<?= base_url() ?>/komik/update/<?= $komik['id'] ?>" method="post">
               <?= csrf_field() ?>
+              <input type="hidden" name="slug" value="<?= $komik['slug'] ?>" />
               <div class="form-group row">
                 <label for="judul" class="col-sm-3 col-form-label">Judul</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control <?= ($validation->hasError('judul'))
-                                                            ? 'is-invalid' : '' ?>" id="judul" name="judul" name="judul" placeholder="Judul komik" autofocus autocomplete="off" value="<?= old('judul')?>">
+                                                            ? 'is-invalid' : '' ?>" id="judul" name="judul" name="judul" placeholder="Judul komik" autofocus autocomplete="off" value="<?= $komik['judul'] ?>">
                   <div id="validationServer03Feedback" class="invalid-feedback">
                     <?= $validation->getError('judul') ?>
 
@@ -43,34 +44,27 @@
               <div class="form-group row">
                 <label for="penulis" class="col-sm-3 col-form-label">Penulis</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Nama penulis" autocomplete="off" value="<?= old('penulis')?>">
+                  <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Nama penulis" autocomplete="off" value="<?= $komik['penulis'] ?>">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="penerbit" class="col-sm-3 col-form-label">Penerbit</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="penerbit" name="penerbit" placeholder="Penerbit" autocomplete="off" value="<?= old('penerbit')?>">
+                  <input type="text" class="form-control" id="penerbit" name="penerbit" placeholder="Penerbit" autocomplete="off" value="<?= $komik['penerbit'] ?>">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="sampul" class="col-sm-3 col-form-label">Sampul</label>
                 <div class="col-sm-9">
-                <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-  </div>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-  </div>
-</div>
+                  <input type="text" class="form-control" id="sampul" name="sampul" placeholder="Sampul" autocomplete="off" value="<?= $komik['sampul'] ?>">
                 </div>
+                <button class="btn btn-primary" type="submit">Edit Data</button>
               </div>
-              <button class="btn btn-primary" type="submit">Submit form</button>
             </form>
           </div>
         </div>
       </div>
+      
 
     </div><!-- /.container-fluid -->
 </section>

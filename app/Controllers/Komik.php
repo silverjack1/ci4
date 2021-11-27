@@ -24,24 +24,90 @@ class Komik extends BaseController
     }
     public function detail($slug)
     {
-
+        $muku = $this->komikModel->getKomik($slug);
         $data = [
             'title' => "Detail Komik",
-            'komik' => $this->komikModel->getKomik($slug)
+            'komik' => $muku
         ];
-        return view('komik/detail', $data);
+        if ($muku != null){
+
+            return view('komik/detail', $data);
+        }else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 
     public function create()
     {
         $data = [
-            'title' => 'Form Tambah Data'
+            'title' => 'Form Tambah Data',
+            'validation' =>  \Config\Services::validation()
         ];
         return view('komik/create', $data);
     }
 
     public function save()
     {
-        dd($this->request->getVar());
+        if (!$this->validate([
+            'judul' => 'required|is_unique[komik.judul]',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'sampul' => 'required'
+        ])) {
+            $validation =  \Config\Services::validation();
+            // dd($validation);
+            return redirect()->to('/komik/create')->withInput()->with('validation', $validation);
+        }
+        $slug = url_title($this->request->getVar('judul'), '-', true);
+        $this->komikModel->save([
+            'judul' => $this->request->getVar('judul'),
+            'slug' =>  $slug,
+            'penulis' => $this->request->getVar('penulis'),
+            'penerbit' => $this->request->getVar('penerbit'),
+            'sampul' => $this->request->getVar('sampul'),
+        ]);
+        session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
+        return redirect()->to('/komik');
+    }
+    
+    public function delete($id){
+        $this->komikModel->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+        return redirect()->to('/komik');
+    }
+
+    public function edit($slug)
+    {
+        $data = [
+            'title' => 'Form ubah Data',
+            'validation' =>  \Config\Services::validation(),
+            'komik' => $this->komikModel->getKomik($slug)
+        ];
+  
+  return view('komik/edit', $data);
+    }
+
+    public function update($id){
+        if (!$this->validate([
+            'judul' => 'required|is_unique[komik.judul]',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'sampul' => 'required'
+        ])) {
+            $validation =  \Config\Services::validation();
+            // dd($validation);
+            return redirect()->to('/komik/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+        }
+        $slug = url_title($this->request->getVar('judul'), '-', true);
+        $this->komikModel->save([
+            'id' => $id,
+            'judul' => $this->request->getVar('judul'),
+            'slug' =>  $slug,
+            'penulis' => $this->request->getVar('penulis'),
+            'penerbit' => $this->request->getVar('penerbit'),
+            'sampul' => $this->request->getVar('sampul'),
+        ]);
+        session()->setFlashdata('pesan', 'Data berhasil diubah');
+        return redirect()->to('/komik');
     }
 }

@@ -4,10 +4,18 @@
 
 <div class="content-header">
   <div class="container-fluid">
-    <div class="row mb-2">
+    <div class="row">
       <div class="col-sm-6">
         <h1 class="m-0"><?= $title ?></h1>
         <a href="<?= base_url() ?>/komik/create" class="btn btn-primary">Tambah</a>
+        <?php if (session()->getFlashdata('pesan')) : ?>
+          <div class="mt-1 alert alert-warning alert-dismissible fade show" role="alert">
+            <?= session()->getFlashdata('pesan') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <?php endif; ?>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -41,7 +49,7 @@
                 <th scope="row"><?= $i++ ?></th>
                 <td><img src="<?= base_url() ?>/public/img/<?= $k['sampul'] ?>" class="sampul"></td>
                 <td><?= $k['judul'] ?></td>
-                <td><a href="<?= base_url() ?>/komik/detail/<?= $k['slug'] ?>" class="btn btn-success">Detail</a></td>
+                <td><a href="<?= base_url() ?>/komik/<?= $k['slug'] ?>" class="btn btn-success">Detail</a></td>
             </tr>
           <?php endforeach; ?>
           </tbody>
