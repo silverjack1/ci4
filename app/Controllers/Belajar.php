@@ -3,9 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\KomikModel;
+use App\Models\CustomModel;
 
 class Belajar extends BaseController
 {
+    protected $komikModel;
+    
+    public function __construct()
+    {
+        $this->komikModel = new KomikModel();
+        
+    }
     public function index()
     {
         $siswa = [
@@ -88,5 +96,24 @@ class Belajar extends BaseController
         
           }
           
+    }
+    public function komik () {
+        return view ('komik/ajax');
+    }
+
+    public function ajaxkomik() {
+    	$model = new CustomModel;
+		$all_data = $model->get();
+        $data = [];
+		foreach($all_data->getResult() as $key=>$row)
+		{
+            $kotak[] = $key;
+            $kotak[] = $row->Name;
+            $data[] = $kotak;
+		
+		}
+        $output = ["data" => $data];
+        dd(json_encode($output));
+
     }
 }

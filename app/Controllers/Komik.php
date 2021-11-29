@@ -110,4 +110,6 @@ class Komik extends BaseController
         session()->setFlashdata('pesan', 'Data berhasil diubah');
         return redirect()->to('/komik');
     }
+    
+    
 }
